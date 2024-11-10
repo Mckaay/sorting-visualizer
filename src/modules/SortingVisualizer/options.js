@@ -4,7 +4,6 @@ import insertionSort from "@/modules/SortingVisualizer/Algorithms/insertionSort.
 import quickSort from "@/modules/SortingVisualizer/Algorithms/quickSort.js";
 import selectionSort from "@/modules/SortingVisualizer/Algorithms/selectionSort.js";
 
-// Sorting algorithm functions
 export const sortingAlgorithms = {
     bubble: bubbleSort,
     selection: selectionSort,
@@ -12,7 +11,6 @@ export const sortingAlgorithms = {
     quick: quickSort,
 };
 
-// Sorting algorithm options
 export const algorithmOptions = [
     { value: 'bubble', name: 'Bubble Sort' },
     { value: 'selection', name: 'Selection Sort' },
@@ -20,9 +18,8 @@ export const algorithmOptions = [
     { value: 'quick', name: 'Quick Sort' }
 ];
 
-// Speed options with delay times in milliseconds
 export const speedOptions = [
-    { value: 'slow', name: 'Slow', delay: 1000 },
-    { value: 'medium', name: 'Medium', delay: 500 },
-    { value: 'fast', name: 'Fast', delay: 20 }
+    { value: 'slow', name: 'Slow', delay: 100 },
+    { value: 'medium', name: 'Medium', delay: 50 },
+    { value: 'fast', name: 'Fast', delay: 10 }
 ];

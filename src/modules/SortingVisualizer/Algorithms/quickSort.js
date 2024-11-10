@@ -2,9 +2,9 @@ function delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-async function partition(ms,array, low, high) {
-    let pivotIndex = Math.floor((low + high) / 2);
-    let pivotValue = array[pivotIndex].number;
+async function partition(ms, array, low, high) {
+    console.log(ms);
+    let pivotValue = array[high].number;
 
     array[high].pivot = true;
     await delay(ms);
@@ -31,7 +31,6 @@ async function partition(ms,array, low, high) {
 }
 
 export default async function quickSort(ms,array, low = 0, high = array.length - 1) {
-    console.log('Hi');
     if (low < high) {
         let pivotIndex = await partition(ms,array, low, high);
 
