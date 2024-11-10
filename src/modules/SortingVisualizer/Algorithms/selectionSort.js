@@ -2,7 +2,7 @@ function delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-export default async function selectionSort(array) {
+export default async function selectionSort(ms,array) {
     let n = array.length;
     let y = 0;
 
@@ -16,7 +16,7 @@ export default async function selectionSort(array) {
             array[y].currentlyComparing = true;
             array[y - 1].currentlyComparing = true;
 
-            await delay(50);
+            await delay(ms);
             array[y].currentlyComparing = false;
             array[y - 1].currentlyComparing = false;
             if (array[y].number < min) {

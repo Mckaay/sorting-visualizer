@@ -3,7 +3,7 @@ function delay(ms) {
 }
 
 
-export default async function bubbleSort(array) {
+export default async function bubbleSort(ms,array) {
     let n = array.length;
     let y = 0;
 
@@ -16,7 +16,7 @@ export default async function bubbleSort(array) {
                 [array[y].number, array[y + 1].number] = [array[y + 1].number, array[y].number];
             }
 
-            await delay(40);
+            await delay(ms);
             array[y].currentlyComparing = false;
             array[y + 1].currentlyComparing = false;
         }

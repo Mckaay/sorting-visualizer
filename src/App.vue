@@ -11,13 +11,11 @@ sortingVisualizerStore.generateNewArray(10);
 
 <template>
   <div class="body-wrapper">
-    <div class="container">
-      <Header/>
-      <main>
-        <SortingVisualizer/>
-      </main>
-      <Footer/>
-    </div>
+    <Header/>
+    <main>
+      <SortingVisualizer/>
+    </main>
+    <Footer/>
   </div>
 </template>
 

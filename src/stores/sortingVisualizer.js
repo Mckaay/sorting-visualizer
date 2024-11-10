@@ -1,21 +1,18 @@
-import { ref, computed } from 'vue'
-import { defineStore } from 'pinia'
-import bubbleSort from "@/modules/SortingAlgorithms/bubbleSort.js";
-import insertionSort from "@/modules/SortingAlgorithms/insertionSort.js";
-import selectionSort from "@/modules/SortingAlgorithms/selectionSort.js";
-import quickSort from "@/modules/SortingAlgorithms/quickSort.js";
+// store file (e.g., useSortingVisualizerStore.js)
+import { ref } from 'vue';
+import { defineStore } from 'pinia';
+import { sortingAlgorithms, algorithmOptions, speedOptions } from "@/modules/SortingVisualizer/options.js";
+import quickSort from "@/modules/SortingVisualizer/Algorithms/quickSort.js";
 
 export const useSortingVisualizerStore = defineStore('visualizer', () => {
-
     const array = ref([]);
-
-    const minArrayValue = 20;
-    const maxArrayValue = 600;
     const sorted = ref(false);
+    const currentAlgorithmSelected = ref('bubble');
+    const currentSpeedSelected = ref('slow');
 
     const generateNewArray = (size) => {
         array.value = Array.from({ length: size }, () => ({
-            number: Math.floor(Math.random() * (maxArrayValue - minArrayValue + 1)) + minArrayValue,
+            number: Math.floor(Math.random() * 580) + 20,
             currentlyComparing: false,
             alreadyCompared: false
         }));
@@ -23,9 +20,31 @@ export const useSortingVisualizerStore = defineStore('visualizer', () => {
     };
 
     const startSorting = async () => {
-        await quickSort(array.value)
-        // sorted.value = true;
-    }
+        if (!currentAlgorithmSelected.value) {
+            console.error("No algorithm selected");
+            return;
+        }
 
-    return { array, generateNewArray, startSorting, sorted }
-})
+        const algorithmCallback = sortingAlgorithms[currentAlgorithmSelected.value];
+        const speed = speedOptions.find(option => option.value === currentSpeedSelected.value);
+        const delay = speed ? speed.delay : 500;
+
+        if (algorithmCallback) {
+            await algorithmCallback(delay, array.value);
+            sorted.value = true;
+        } else {
+            console.error("Invalid algorithm selected");
+        }
+    };
+
+    return {
+        currentAlgorithmSelected,
+        speedOptions,
+        currentSpeedSelected,
+        algorithmOptions,
+        array,
+        generateNewArray,
+        startSorting,
+        sorted
+    };
+});

@@ -1,29 +1,42 @@
 <script setup>
-  import {useSortingVisualizerStore} from "@/stores/sortingVisualizer.js";
-  const sortingVisualizerStore = useSortingVisualizerStore();
+import { useSortingVisualizerStore } from '@/stores/sortingVisualizer.js';
+import Select from './Select.vue';
+import Button from './Button.vue';
+
+const sortingVisualizerStore = useSortingVisualizerStore();
+
+const updateAlgorithm = (value) => {
+  sortingVisualizerStore.currentAlgorithmSelected = value;
+};
+
+const updateSpeed = (value) => {
+  sortingVisualizerStore.currentSpeedSelected = value;
+};
 </script>
 
 <template>
   <header>
-    <h1>Sorting Visualizer</h1>
-    <div class="options-wrapper">
-      <button @click="sortingVisualizerStore.generateNewArray(20)">Generate new array</button>
-      <div class="select-wrapper">
-        <label for="algorithms">Choose Algorithm</label>
-        <select name="algorithms" class="select">
-          <option value="bubble" selected>Bubble Sort</option>
-          <option value="selection">Selection Sort</option>
-        </select>
-      </div>
-      <div class="select-wrapper">
-        <label for="algorithms">Choose Speed</label>
-        <select name="speed" class="select">
-          <option value="slow" selected>Slow</option>
-          <option value="fast">Fast</option>
-        </select>
+    <div class="container">
+      <div class="wrapper">
+        <h1>Sorting Visualizer</h1>
+        <div class="options-wrapper">
+          <Button @click="sortingVisualizerStore.generateNewArray(20)" text="Generate New Array" />
+          <Select
+              label="Choose Algorithm"
+              name="algorithm"
+              :options="sortingVisualizerStore.algorithmOptions"
+              @change="updateAlgorithm"
+          />
+          <Select
+              label="Choose Speed"
+              name="speed"
+              :options="sortingVisualizerStore.speedOptions"
+              @change="updateSpeed"
+          />
+        </div>
+        <Button @click="sortingVisualizerStore.startSorting()" text="Sort!" />
       </div>
     </div>
-    <button @click="sortingVisualizerStore.startSorting()">Sort!</button>
   </header>
 </template>
 
@@ -34,18 +47,18 @@
     align-items: center;
     gap: var(--spacing-100);
     flex-wrap: wrap;
-    padding-top: var(--spacing-100);
+    background-color: var(--color-light-bluish);
+    padding-top: var(--spacing-150);
+    padding-bottom: var(--spacing-150)
   }
 
   .options-wrapper {
     display: flex;
-    align-items: center;
-    gap: var(--spacing-100);
+    gap: 1rem;
   }
 
-  .select-wrapper {
+  .wrapper {
     display: flex;
-    align-items: center;
-    gap: var(--spacing-50);
+    gap: var(--spacing-150);
   }
 </style>

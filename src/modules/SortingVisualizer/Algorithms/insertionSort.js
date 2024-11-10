@@ -2,7 +2,7 @@ function delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-export default async function insertionSort(array) {
+export default async function insertionSort(ms,array) {
     let n = array.length;
 
     for (let i = 0; i < n - 1; i++) {
@@ -11,7 +11,7 @@ export default async function insertionSort(array) {
             array[y].currentlyComparing = true;
             array[y - 1].currentlyComparing = true;
             if (array[y].number > array[y - 1].number) {
-                await delay(80);
+                await delay(ms);
                 array[y].currentlyComparing = false;
                 array[y - 1].currentlyComparing = false;
                 break;
@@ -21,7 +21,7 @@ export default async function insertionSort(array) {
                 [array[y].number, array[y - 1].number] = [array[y - 1].number, array[y].number];
             }
 
-            await delay(80);
+            await delay(ms);
             array[y].currentlyComparing = false;
             array[y - 1].currentlyComparing = false;
         }
