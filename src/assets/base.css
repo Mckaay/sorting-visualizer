@@ -1,0 +1,10 @@
+body {
+    font-family: var(--font-family-base);
+    font-weight: var(--font-weight-regular);
+    font-size: var(--font-size-100);
+    width: 100svw;
+    height: 100svh;
+    color: var(--color-dark-navy);
+
+    background-color: var(--color-light-gray);
+}
