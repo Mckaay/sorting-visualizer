@@ -9,7 +9,7 @@ sortingVisualizerStore.generateNewArray(20);
 <template>
   <div class="bar-container">
     <div v-for="bar in sortingVisualizerStore.array"
-         :class="{ 'currently-compared': bar.currentlyCompared,
+         :class="{ 'currently-compared': bar.currentlyComparing,
           'already-compared': bar.alreadyCompared }"
          :style="{ height: `${bar.number}px` }"
          class="bar">

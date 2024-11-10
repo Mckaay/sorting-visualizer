@@ -9,16 +9,16 @@ export default async function bubbleSort(array) {
 
     for (let i = 0; i < n; i++) {
         for (y = 0; y < n - 1 - i; y++) {
-            array[y].currentlyCompared = true;
-            array[y + 1].currentlyCompared = true;
+            array[y].currentlyComparing = true;
+            array[y + 1].currentlyComparing = true;
 
             if (array[y].number > array[y + 1].number) {
                 [array[y].number, array[y + 1].number] = [array[y + 1].number, array[y].number];
             }
 
-            await delay(10);
-            array[y].currentlyCompared = false;
-            array[y + 1].currentlyCompared = false;
+            await delay(40);
+            array[y].currentlyComparing = false;
+            array[y + 1].currentlyComparing = false;
         }
 
         array[y].alreadyCompared = true;

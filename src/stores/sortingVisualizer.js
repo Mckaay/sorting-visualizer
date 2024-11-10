@@ -12,7 +12,7 @@ export const useSortingVisualizerStore = defineStore('visualizer', () => {
     const generateNewArray = (size) => {
         array.value = Array.from({ length: size }, () => ({
             number: Math.floor(Math.random() * (maxArrayValue - minArrayValue + 1)) + minArrayValue,
-            currentlyCompared: false,
+            currentlyComparing: false,
             alreadyCompared: false
         }));
     };
