@@ -4,7 +4,6 @@ import {useSortingVisualizerStore} from "@/stores/sortingVisualizer.js";
 import Bar from "@/components/Bar.vue";
 
 const sortingVisualizerStore = useSortingVisualizerStore();
-sortingVisualizerStore.generateNewArray(20);
 
 </script>
 

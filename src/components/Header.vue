@@ -2,6 +2,7 @@
 import { useSortingVisualizerStore } from '@/stores/sortingVisualizer.js';
 import Select from './Select.vue';
 import Button from './Button.vue';
+import {ref} from "vue";
 
 const sortingVisualizerStore = useSortingVisualizerStore();
 
@@ -12,6 +13,12 @@ const updateAlgorithm = (value) => {
 const updateSpeed = (value) => {
   sortingVisualizerStore.currentSpeedSelected = value;
 };
+
+
+const updateSize = (event) => {
+  sortingVisualizerStore.arraySize = event.target.value;
+  sortingVisualizerStore.generateNewArray();
+}
 </script>
 
 <template>
@@ -20,7 +27,10 @@ const updateSpeed = (value) => {
       <div class="wrapper">
         <h1>Sorting Visualizer</h1>
         <div class="options-wrapper">
-          <Button @click="sortingVisualizerStore.generateNewArray(20)" text="Generate New Array" />
+          <div class="wrapper">
+            <Button :disabled="sortingVisualizerStore.currentlySorting" @click="sortingVisualizerStore.generateNewArray(20)" text="Generate New Array" />
+            <input @change="updateSize" :disabled="sortingVisualizerStore.currentlySorting" type="range" min="10" max="100" value="20">
+          </div>
           <Select
               label="Choose Algorithm"
               name="algorithm"
@@ -34,7 +44,8 @@ const updateSpeed = (value) => {
               @change="updateSpeed"
           />
         </div>
-        <Button @click="sortingVisualizerStore.startSorting()" text="Sort!" />
+        <Button v-if="!sortingVisualizerStore.currentlySorting" :disabled="sortingVisualizerStore.currentlySorting  || sortingVisualizerStore.sorted" @click="sortingVisualizerStore.startSorting()" text="Sort!" />
+        <Button v-else @click="sortingVisualizerStore.currentlySorting = false" text="Stop" />
       </div>
     </div>
   </header>

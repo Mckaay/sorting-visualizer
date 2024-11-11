@@ -21,4 +21,12 @@
     cursor: pointer;
     background-color: var(--color-light-gray);
   }
+
+  .primary:disabled {
+    pointer-events: none;
+  }
+
+  button:disabled {
+    cursor: not-allowed;
+  }
 </style>

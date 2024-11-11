@@ -1,3 +1,5 @@
+import {useSortingVisualizerStore} from "@/stores/sortingVisualizer.js";
+
 function delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -5,14 +7,19 @@ function delay(ms) {
 export default async function selectionSort(ms,array) {
     let n = array.length;
     let y = 0;
-
     let minimumIndex = 0;
+
+    const visualizerStore = useSortingVisualizerStore();
 
     for (let i = 0; i < n; i++) {
         let min = array[i].number;
         let swapIndex = i;
 
         for(y = i+1; y < n; y++) {
+            if (!visualizerStore.currentlySorting) {
+                return false;
+            }
+
             array[y].currentlyComparing = true;
             array[y - 1].currentlyComparing = true;
 

@@ -1,9 +1,10 @@
+import {useSortingVisualizerStore} from "@/stores/sortingVisualizer.js";
+
 function delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 async function partition(ms, array, low, high) {
-    console.log(ms);
     let pivotValue = array[high].number;
 
     array[high].pivot = true;
@@ -30,11 +31,17 @@ async function partition(ms, array, low, high) {
     return i + 1;
 }
 
-export default async function quickSort(ms,array, low = 0, high = array.length - 1) {
+export default async function quickSort(ms,array, low = 0, high = array.length - 1, visualizerStore = useSortingVisualizerStore()) {
+    if (!visualizerStore.currentlySorting) {
+        return false;
+    }
+
     if (low < high) {
         let pivotIndex = await partition(ms,array, low, high);
 
         await quickSort(ms, array, low, pivotIndex - 1);
         await quickSort(ms, array, pivotIndex + 1, high);
     }
+
+    return true;
 }

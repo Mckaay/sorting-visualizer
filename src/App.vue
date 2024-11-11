@@ -5,8 +5,6 @@ import Footer from "@/components/Footer.vue";
 import {useSortingVisualizerStore} from "@/stores/sortingVisualizer.js";
 
 const sortingVisualizerStore = useSortingVisualizerStore();
-
-sortingVisualizerStore.generateNewArray(10);
 </script>
 
 <template>
