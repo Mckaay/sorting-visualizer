@@ -1,6 +1,6 @@
 <script setup>
 import {useSortingVisualizerStore} from "@/stores/sortingVisualizer.js";
-import {onBeforeMount, onMounted, ref} from "vue";
+import { ref } from "vue";
 
 const { bar } = defineProps(['bar']);
 const sortingVisualizerStore = useSortingVisualizerStore();

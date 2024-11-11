@@ -2,7 +2,6 @@
 import {computed, onMounted, ref, watch} from 'vue';
 import { defineStore } from 'pinia';
 import { sortingAlgorithms, algorithmOptions, speedOptions } from "@/modules/SortingVisualizer/options.js";
-import quickSort from "@/modules/SortingVisualizer/Algorithms/quickSort.js";
 
 export const useSortingVisualizerStore = defineStore('visualizer', () => {
     const array = ref([]);

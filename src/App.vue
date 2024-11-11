@@ -4,7 +4,6 @@ import SortingVisualizer from "@/components/SortingVisualizer.vue";
 import Footer from "@/components/Footer.vue";
 import {useSortingVisualizerStore} from "@/stores/sortingVisualizer.js";
 
-const sortingVisualizerStore = useSortingVisualizerStore();
 </script>
 
 <template>
